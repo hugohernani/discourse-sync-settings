@@ -52,18 +52,22 @@ after_initialize do
   end
 
   DiscourseEvent.on(:site_setting_saved) do |site_setting|
-    current_settings = SiteSetting.current
-    setting_keys = current_settings.keys
-    unsync_settings = []
-    if setting_keys.include?(:sync_settings_unsync_settings)
-      unsync_settings = current_settings[:sync_settings_unsync_settings].split(/,/).map{ |s| s.strip.downcase.to_sym }
+    begin
+      current_settings = SiteSetting.current
+      setting_keys = current_settings.keys
+      unsync_settings = []
+      if setting_keys.include?(:sync_settings_unsync_settings)
+        unsync_settings = current_settings[:sync_settings_unsync_settings].split(/,/).map{ |s| s.strip.downcase.to_sym }
+      end
+      Jobs.enqueue(:sync_settings_api_call,
+        {
+          current_settings: current_settings,
+          unsync_settings: unsync_settings,
+          site_setting_name: site_setting.name, site_setting_value: site_setting.value
+        }
+      )
+    rescue => e
+      Rails.logger.error("Error On Updating the Settings: #{e.message}")
     end
-    Jobs.enqueue(:sync_settings_api_call,
-      {
-        current_settings: current_settings,
-        unsync_settings: unsync_settings,
-        site_setting_name: site_setting.name, site_setting_value: site_setting.value
-      }
-    )
   end
 end
