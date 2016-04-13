@@ -1,0 +1,8 @@
+en:
+  site_settings:
+    sync_settings_enabled: "Enable Settings Syncronization From This Provider?"
+    sync_settings_production_host: "Host (i.e http://discourse.com.br/) whose settings will be sent"
+    sync_settings_production_api_key: "API key of the server instance"
+    sync_settings_production_admin_username: "Server Admin Username"
+    sync_settings_embeddable_comments_enabled: "Would like to syncronize hosts and categories for Embeddable Comments"
+    sync_settings_unsync_settings: "List here what settings you do not want to syncronize (i.e: site_description, contact_email)"

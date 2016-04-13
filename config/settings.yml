@@ -1,0 +1,19 @@
+plugins:
+  sync_settings_enabled:
+    default: true
+    client: true
+  sync_settings_production_host:
+    default: ""
+    client: true
+  sync_settings_production_api_key:
+    default: ""
+    client: true
+  sync_settings_production_admin_username:
+    default: ""
+    client: true
+  sync_settings_embeddable_comments_enabled:
+    default: false
+    client: true
+  sync_settings_unsync_settings:
+    default: ''
+    client: true
