@@ -27,7 +27,9 @@ module ShareableSettings
         site_settings: current_changed_setting,
         embeddable_hosts: embeddable_hosts(current_settings)
       }
-      {"shareable_settings": shareable_settings}.to_json
+      res = Hash.new
+      res["shareable_settings"] = shareable_settings
+      res.to_json
     end
   end
 end
