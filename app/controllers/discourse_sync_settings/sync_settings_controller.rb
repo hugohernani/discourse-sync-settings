@@ -1,3 +1,4 @@
+load File.expand_path('../../../../lib/discourse_sync_settings/services/sync_settings_info.rb', __FILE__)
 load File.expand_path('../../../../lib/discourse_sync_settings/services/sync_settings_api_call_service.rb', __FILE__)
 
 module DiscourseSyncSettings
