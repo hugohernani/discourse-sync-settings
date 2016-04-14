@@ -1,0 +1,34 @@
+{{#if settingsSent}}
+  <div>
+    The current settings were sent to the Server
+  </div>
+{{/if}}
+
+{{#if settingsSynced}}
+  <div>
+    The servers were syncronized
+  </div>
+{{/if}}
+
+{{#if syncErrors}}
+  <div>
+    {{initErrors}}
+  </div>
+{{else}}
+  <div class='buttons'>
+    {{d-button label="sync_settings.send" action="sendSettings" icon="mail"}}
+  </div>
+
+  {{#if result}}
+  <h2> Server answer </h2>
+  <div>
+    {{result}}
+  </div>
+  {{/if}}
+{{/if}}
+
+{{#if syncErrors}}
+  <div>
+    {{parsedSyncErrors}}
+  </div>
+{{/if}}
