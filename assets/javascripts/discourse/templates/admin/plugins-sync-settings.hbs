@@ -15,6 +15,16 @@
     {{initErrors}}
   </div>
 {{else}}
+
+  {{#if has_excluded_settings}}
+  <span> These are the settings you do not want to syncronize.</span>
+  <ul>
+    {{#each setting in excluded_settings}}
+      <li>{{setting}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+
   <div class='buttons'>
     {{d-button label="sync_settings.send" action="sendSettings" icon="mail"}}
   </div>

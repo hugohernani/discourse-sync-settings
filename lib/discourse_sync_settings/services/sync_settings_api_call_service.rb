@@ -20,9 +20,9 @@ module DiscourseSyncSettings
         request = Net::HTTP::Post.new(uri.path+"?"+uri.query)
         request.add_field('Content-Type', 'application/json')
 
-        settings = current_settings.except(*sync_settings_names)
+        settings = current_settings.except(*[sync_settings_names,unsync_settings].flatten)
 
-        request.body = shareable_settings(current_settings, settings)
+        request.body = shareable_settings(settings)
 
         response = http.request(request)
 
@@ -54,9 +54,9 @@ module DiscourseSyncSettings
       end
     end
 
-    def shareable_settings(current_settings, current_changed_setting)
+    def shareable_settings(current_settings)
       shareable_settings = {
-        site_settings: current_changed_setting,
+        site_settings: current_settings,
         embeddable_hosts: embeddable_hosts(current_settings)
       }
       res = Hash.new

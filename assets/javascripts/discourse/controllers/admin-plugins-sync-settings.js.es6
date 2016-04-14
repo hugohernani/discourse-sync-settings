@@ -5,6 +5,8 @@ export default Ember.Controller.extend({
   initErrors: '',
   parsedSyncErrors: '',
   result: '',
+  has_excluded_settings: false,
+  excluded_settings: [],
 
   init: function(){
     var self = this;
@@ -20,6 +22,11 @@ export default Ember.Controller.extend({
         self.set("syncErrors", true);
         self.set("initErrors", 'Check if all the required sync_settings were set before continuing with the syncronization');
       }
+
+    if(site_settings.sync_settings_unsync_settings.length != 0){
+      self.has_excluded_settings = true;
+      self.excluded_settings = site_settings.sync_settings_unsync_settings.split(/,/);
+    }
   },
 
   actions: {

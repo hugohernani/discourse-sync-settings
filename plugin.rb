@@ -3,8 +3,6 @@
 # version: 0.0.1
 # authors: Quezmedia
 
-# gem 'discourse_api', '0.9.1'
-
 enabled_site_setting :sync_settings_enabled
 
 # load the engine
